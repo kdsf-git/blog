@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create New Blog Post</title>
+    <!-- Add necessary CSS and JavaScript files, including Quill.js -->
+    <link href="path/to/quill.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <h1>Create a New Blog Post</h1>
+
+    <form method="POST" action="/posts/create" enctype="multipart/form-data">
+        <label for="title">Title</label>
+        <input type="text" id="title" name="title" required>
+
+        <label for="content">Content</label>
+        <div id="editor" style="height: 300px;"></div>
+        <input type="hidden" id="content" name="content">
+
+        <label for="tags">Tags (comma-separated)</label>
+        <input type="text" id="tags" name="tags">
+
+        <label for="image">Featured Image</label>
+        <input type="file" id="image" name="image" accept="image/*">
+
+        <button type="submit">Publish</button>
+    </form>
+</div>
+
+<!-- Include Quill.js for the rich text editor -->
+<script src="path/to/quill.js"></script>
+<script>
+    var quill = new Quill('#editor', {
+        theme: 'snow' // You can choose different themes
+    });
+
+    // Retrieve and set the content in the hidden input field
+    var contentInput = document.querySelector('#content');
+    quill.on('text-change', function() {
+        contentInput.value = quill.root.innerHTML;
+    });
+</script>
+</body>
+</html>
