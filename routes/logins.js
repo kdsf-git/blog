@@ -4,7 +4,7 @@ const router = express.Router();
 
 // Login Page
 router.get('/', (req, res) => {
-    res.render('login', { message: req.flash('error') });
+    res.render('login');
 });
 
 // Handle Login (form submission)
