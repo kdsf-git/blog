@@ -19,6 +19,6 @@
   "homepage": "https://github.com/kdsf-git/blog#readme",
   "dependencies": {
     "express": "^4.18.1",
-    "mysql": "^8.0.35" // You can specify the desired version
+    "mysql": "^8.0.35"
   }
 }
