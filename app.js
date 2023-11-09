@@ -21,6 +21,13 @@ con.connect(function(err) {
 });
 
 // Implement the key features with routes, controllers, models, and views
+// Define routes
+const indexRoutes = require('./routes/index');
+const postsRoutes = require('./routes/posts');
+
+app.use("/",indexRoutes);
+app.use("/posts",postsRoutes);
+
 // Implement user authentication, post creation, comments, likes, search, etc.
 
 // Start the server
