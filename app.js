@@ -6,6 +6,7 @@ const session = require('express-session');
 const app = express();
 
 // Middlewares, configurations, and routes setup
+app.set("view engine", 'ejs');
 
 // Connect to MySQL
 var con = mysql2.createConnection({
