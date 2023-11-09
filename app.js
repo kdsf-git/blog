@@ -9,7 +9,7 @@ const app = express();
 
 // Connect to MySQL
 var con = mysql.createConnection({
-    host: "kdsf.de",
+    host: "192.168.0.12",
     user: "app",
     password: "dbpassword"
 });
