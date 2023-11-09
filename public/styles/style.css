@@ -96,7 +96,7 @@ form button[type="submit"] {
 
 /* List styles */
 ul {
-    list-style: none;
+    list-style: lower-alpha outside;
 }
 
 li {
