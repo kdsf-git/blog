@@ -11,8 +11,8 @@ const app = express();
 var con = mysql2.createConnection({
     host: "192.168.0.12",
     user: "app",
-    password: "dbpassword"
-    database: "db",
+    password: "dbpassword",
+    database: "db"
 });
 
 con.connect(function(err) {
