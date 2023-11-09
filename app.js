@@ -2,8 +2,6 @@
 const express = require('express');
 const mysql = require('mysql');
 const session = require('express-session');
-const passport = require('passport');
-const methodOverride = require('method-override');
 
 const app = express();
 
