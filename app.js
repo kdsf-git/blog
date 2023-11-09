@@ -32,7 +32,7 @@ const usersRoutes = require('./routes/users');
 
 app.use("/",indexRoutes);
 app.use("/posts",postsRoutes);
-app.use("/",loginsRoutes);
+app.use("/login",loginsRoutes);
 app.use("/",profilesRoutes);
 app.use("/",registersRoutes);
 app.use("/",usersRoutes);

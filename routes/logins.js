@@ -1,33 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
 
-// Configure Passport.js for user authentication
-passport.use(new LocalStrategy(
-    (username, password, done) => {
-        // Replace this with your actual user authentication logic
-        // Check if the username and password are valid
-        if (username === 'user' && password === 'password') {
-            return done(null, { username: 'user' });
-        }
-        return done(null, false, { message: 'Invalid username or password' });
-    }
-));
-
-passport.serializeUser((user, done) => {
-    done(null, user.username);
-});
-
-passport.deserializeUser((username, done) => {
-    // Fetch the user from the database based on username
-    // Replace this with your actual user retrieval logic
-    if (username === 'user') {
-        done(null, { username: 'user' });
-    } else {
-        done(null, false);
-    }
-});
 
 // Login Page
 router.get('/', (req, res) => {
@@ -35,10 +8,19 @@ router.get('/', (req, res) => {
 });
 
 // Handle Login (form submission)
-router.post('/', passport.authenticate('local', {
-    successRedirect: '/profile',
-    failureRedirect: '/login',
-    failureFlash: true
-}));
+router.post('/', (req, res) => {
+    const { username, password } = req.body;
+
+    // Implement your custom logic here to check if the username and password are valid
+    // You can replace this with your own authentication logic
+
+    if (username === 'exampleUser' && password === 'password123') {
+        // Redirect to a success page or the user's profile
+        res.redirect('/success');
+    } else {
+        // Redirect back to the login page with an error message
+        res.redirect('/login?error=1');
+    }
+});
 
 module.exports = router;
