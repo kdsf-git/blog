@@ -11,9 +11,9 @@ const app = express();
 
 // Connect to MySQL
 var con = mysql.createConnection({
-    host: "localhost",
-    user: "yourusername",
-    password: "yourpassword"
+    host: "kdsf.de",
+    user: "app",
+    password: "dbpassword"
 });
 
 con.connect(function(err) {
