@@ -25,9 +25,18 @@ con.connect(function(err) {
 // Define routes
 const indexRoutes = require('./routes/index');
 const postsRoutes = require('./routes/posts');
+const loginsRoutes = require('./routes/logins');
+const profilesRoutes = require('./routes/profiles');
+const registersRoutes = require('./routes/registers');
+const usersRoutes = require('./routes/users');
 
 app.use("/",indexRoutes);
 app.use("/posts",postsRoutes);
+app.use("/",loginsRoutes);
+app.use("/",profilesRoutes);
+app.use("/",registersRoutes);
+app.use("/",usersRoutes);
+
 
 // Implement user authentication, post creation, comments, likes, search, etc.
 
