@@ -1,6 +1,6 @@
 // Sample code structure for the backend
 const express = require('express');
-const mysql = require('mysql');
+const mysql2 = require('mysql2');
 const session = require('express-session');
 
 const app = express();
@@ -8,7 +8,7 @@ const app = express();
 // Middlewares, configurations, and routes setup
 
 // Connect to MySQL
-var con = mysql.createConnection({
+var con = mysql2.createConnection({
     host: "192.168.0.12",
     user: "app",
     password: "dbpassword"
