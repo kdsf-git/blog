@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Profile</title>
+    <!-- Add necessary CSS for styling -->
+    <link href="/styles/profile.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <h1>User Profile</h1>
+
+    <div class="user-info">
+        <img src="<%= user.profilePicture %>" alt="User's Profile Picture">
+        <h2><%= user.username %></h2>
+        <p><%= user.bio %></p>
+    </div>
+
+    <h2>Published Posts</h2>
+    <ul class="post-list">
+        <% posts.forEach(function(post) { %>
+            <li>
+                <a href="/post/<%= post._id %>"><%= post.title %></a>
+            </li>
+        <% }); %>
+    </ul>
+</div>
+
+<!-- Include additional styling or scripts as needed -->
+</body>
+</html>

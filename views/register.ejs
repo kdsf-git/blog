@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Registration</title>
+    <!-- Add necessary CSS for styling -->
+    <link href="/styles/register.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <h1>User Registration</h1>
+
+    <form method="POST" action="/register" enctype="multipart/form-data">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required>
+
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" required>
+
+        <label for="bio">Bio (optional)</label>
+        <textarea id="bio" name="bio" rows="4"></textarea>
+
+        <label for="profilePicture">Profile Picture (optional)</label>
+        <input type="file" id="profilePicture" name="profilePicture" accept="image/*">
+
+        <button type="submit">Register</button>
+    </form>
+</div>
+
+<!-- Include additional styling or scripts as needed -->
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Blog Posts</title>
+    <!-- Add necessary CSS for styling -->
+    <link href="/styles/index.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <h1>Blog Posts</h1>
+
+    <ul class="post-list">
+        <% posts.forEach(function(post) { %>
+            <li>
+                <a href="/post/<%= post._id %>"><%= post.title %></a>
+            </li>
+        <% }); %>
+    </ul>
+</div>
+
+<!-- Include additional styling or scripts as needed -->
+</body>
+</html>

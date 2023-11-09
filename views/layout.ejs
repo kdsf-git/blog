@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <!-- Include your CSS and other necessary resources here -->
+    <link href="/styles/main.css" rel="stylesheet">
+</head>
+<body>
+<header>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <% if (user) { %>
+                <li><a href="/profile">Profile</a></li>
+                <li><a href="/logout">Logout</a></li>
+            <% } else { %>
+                <li><a href="/login">Login</a></li>
+                <li><a href="/register">Register</a></li>
+            <% } %>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <!-- Page-specific content goes here -->
+    <%= body %>
+</main>
+
+<footer>
+    <!-- Footer content goes here -->
+</footer>
+
+<!-- Include your JavaScript files at the end of the body section -->
+<script src="/scripts/main.js"></script>
+</body>
+</html>
