@@ -1,4 +1,4 @@
-// Sample code structure for the backend (app.js)
+// Sample code structure for the backend
 const express = require('express');
 const mysql = require('mysql');
 const session = require('express-session');
