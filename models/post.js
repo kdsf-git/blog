@@ -1,32 +1,42 @@
-const express = require('express');
-const router = express.Router();
-const Post = require('../models/Post'); // Assuming you have a Post model
-const { ensureAuthenticated } = require('../config/auth'); // Middleware for user authentication
-
-// View a specific blog post
-router.get('/:postId', async (req, res) => {
-    try {
-        const post = await Post.findById(req.params.postId);
-        if (!post) {
-            return res.status(404).send('Post not found');
-        }
-        res.render('single-post', { post });
-    } catch (err) {
-        console.error(err);
-        res.status(500).send('Internal Server Error');
+class Post {
+    constructor(title, content, author) {
+        this.title = title;
+        this.content = content;
+        this.author = author;
+        this.createdAt = new Date();
     }
-});
 
-// Edit a specific blog post (form submission)
-router.post('/:postId/edit', ensureAuthenticated, async (req, res) => {
-    try {
-        const { title, content, tags } = req.body;
-        const post = await Post.findByIdAndUpdate(req.params.postId, { title, content, tags }, { new: true });
-        res.redirect(`/post/${post._id}`);
-    } catch (err) {
-        console.error(err);
-        res.status(500).send('Internal Server Error');
+    getTitle() {
+        return this.title;
     }
-});
 
-module.exports = router;
+    setTitle(title) {
+        this.title = title;
+    }
+
+    getContent() {
+        return this.content;
+    }
+
+    setContent(content) {
+        this.content = content;
+    }
+
+    getAuthor() {
+        return this.author;
+    }
+
+    setAuthor(author) {
+        this.author = author;
+    }
+
+    getCreatedAt() {
+        return this.createdAt;
+    }
+
+    setCreatedAt(createdAt) {
+        this.createdAt = createdAt;
+    }
+}
+
+module.exports = Post;
