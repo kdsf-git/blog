@@ -9,11 +9,11 @@ const Comment = sequelize.define('Comment', {
 	unique: true,
 	autoIncrement: true,
 	primaryKey: true
-    }
+    },
     post: {
 	type: DataTypes.INTEGER,
 	allowNull: false
-    }
+    },
     username: {
         type: DataTypes.STRING(10),
         allowNull: false

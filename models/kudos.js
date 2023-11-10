@@ -9,7 +9,7 @@ const Kudos = sequelize.define('Kudos', {
 	unique: true,
 	autoIncrement: true,
 	primaryKey: true
-    }
+    },
     username: {
         type: DataTypes.STRING(10),
         allowNull: false
