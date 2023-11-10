@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title><%= title %></title>
-    <!-- Include your CSS and other necessary resources here -->
-    <link href="/styles/main.css" rel="stylesheet">
+    <%- include(head) %>
 </head>
 <body>
 <header>
@@ -22,15 +20,8 @@
 </header>
 
 <main>
-    <!-- Page-specific content goes here -->
-    <%= body %>
+    <%- include(body) %>
 </main>
 
-<footer>
-    <!-- Footer content goes here -->
-</footer>
-
-<!-- Include your JavaScript files at the end of the body section -->
-<script src="/scripts/main.js"></script>
 </body>
 </html>

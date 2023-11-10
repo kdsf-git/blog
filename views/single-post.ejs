@@ -1,15 +1,23 @@
-<!-- Sample EJS template for displaying blog posts -->
 <!DOCTYPE html>
 <html>
 <head>
     <title><%= post.title %></title>
-    <!-- Add CSS stylesheets and other dependencies -->
 </head>
 <body>
 <div class="container">
     <h1><%= post.title %></h1>
     <p><%= post.content %></p>
-    <!-- Other post details, comments section, etc. -->
+    <p>Keywords: <%= post.keywords %></p>
+    <p>Author: <%= post.username %></p>
+    <p>Views: <%= post.views %></p>
+    <ul>
+	<% comments.forEach(function(comment) { %>
+	    <li>
+		    <p><%= comment.username %></p>
+		    <p><%= comment.content %></p>
+	    </li>
+	<% }); %>
+    </ul>
 </div>
 </body>
 </html>
