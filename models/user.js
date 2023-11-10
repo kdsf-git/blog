@@ -1,33 +1,26 @@
 const { Sequelize, DataTypes } = require('sequelize');
-
-// Initialize Sequelize with your database connection details
-const sequelize = new Sequelize('your_database', 'your_username', 'your_password', {
-    host: 'your_host',
-    dialect: 'mysql',
-});
+const sequelize = require("./dbConnector");
 
 // Define the User model
 const User = sequelize.define('User', {
     username: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(10),
         allowNull: false,
         unique: true,
+	primaryKey: true
     },
     email: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         allowNull: false,
         unique: true,
     },
     password: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         allowNull: false,
     },
     bio: {
-        type: DataTypes.STRING,
-    },
-    profilePicture: {
-        type: DataTypes.STRING,
-    },
+        type: DataTypes.TEXT,
+    }
     // Add any other fields you need for the user model
 });
 

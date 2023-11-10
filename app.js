@@ -31,11 +31,11 @@ const registersRoutes = require('./routes/registers');
 const usersRoutes = require('./routes/users');
 
 app.use("/",indexRoutes);
-app.use("/posts",postsRoutes);
+app.use("/post",postsRoutes);
 app.use("/login",loginsRoutes);
-app.use("/",profilesRoutes);
-app.use("/",registersRoutes);
-app.use("/",usersRoutes);
+app.use("/profile",profilesRoutes);
+app.use("/register",registersRoutes);
+app.use("/user",usersRoutes);
 
 
 // Implement user authentication, post creation, comments, likes, search, etc.
