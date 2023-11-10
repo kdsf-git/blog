@@ -1,9 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
+<% var head = () => { %>
     <title><%= post.title %></title>
-</head>
-<body>
+<% } -%>
+
+<% var body = () => { %>
 <div class="container">
     <h1><%= post.title %></h1>
     <p><%= post.content %></p>
@@ -19,5 +18,4 @@
 	<% }); %>
     </ul>
 </div>
-</body>
-</html>
+<% } -%>
