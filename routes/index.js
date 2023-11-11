@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Post = require('../models/post.js');
+const am = require('../models/authManager.js');
 
 async function getPostsByDate() {
 	return await Post.findAll({
@@ -12,8 +13,10 @@ async function getPostsByDate() {
 
 // Routes
 router.get('/', (req, res) => {
-    getPostsByDate().then(posts => {
-    	res.render('index', { posts });
+    am.getUserFromSession(req.session).then(user => {
+        getPostsByDate().then(posts => {
+      	    res.render('index', { posts, user });
+    	});
     });
 });
 

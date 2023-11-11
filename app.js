@@ -2,10 +2,18 @@
 const express = require('express');
 const session = require('express-session');
 
+//initialize DB ORM
+require('./models/makeAssociations.js');
+
 const app = express();
 
 // Middlewares, configurations, and routes setup
 app.set("view engine", 'ejs');
+
+app.use(session({
+	genid: (req) => { return genuuid(); },
+	secret: "not a very good secret"
+}));
 
 // Implement the key features with routes, controllers, models, and views
 // Define routes
