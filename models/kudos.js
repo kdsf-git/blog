@@ -20,7 +20,10 @@ const Kudos = sequelize.define('Kudos', {
     }
 },
 {
-    tableName: 'Kudos'
+	tableName: 'Kudos',
+	timestamps: false,
+	createdAt: false,
+	updatedAt: false
 });
 
 // Create the Kudos table in the database if it doesn't exist

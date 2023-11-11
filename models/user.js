@@ -23,7 +23,10 @@ const User = sequelize.define('User', {
     }
 },
 {
-	tableName: 'User'
+	tableName: 'User',
+	timestamps: false,
+	createdAt: false,
+	updatedAt: false
 });
 
 // Create the User table in the database if it doesn't exist

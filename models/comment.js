@@ -24,7 +24,10 @@ const Comment = sequelize.define('Comment', {
     }
 },
 {
-	tableName: 'Comment'
+	tableName: 'Comment',
+	timestamps: false,
+	createdAt: false,
+	updatedAt: false
 });
 
 // Create the Comment table in the database if it doesn't exist
