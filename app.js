@@ -17,11 +17,11 @@ app.use(session({
 // Implement the key features with routes, controllers, models, and views
 // Define routes
 const indexRoutes = require('./routes/index');
-const postsRoutes = require('./routes/posts');
-const loginsRoutes = require('./routes/logins');
-const profilesRoutes = require('./routes/profiles');
-const registersRoutes = require('./routes/registers');
-const usersRoutes = require('./routes/users');
+const postsRoutes = require('./routes/post');
+const loginsRoutes = require('./routes/login');
+const profilesRoutes = require('./routes/profile');
+const registersRoutes = require('./routes/register');
+const usersRoutes = require('./routes/user');
 
 app.use("/",indexRoutes);
 app.use("/post",postsRoutes);
