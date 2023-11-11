@@ -21,7 +21,9 @@ const User = sequelize.define('User', {
     bio: {
         type: DataTypes.TEXT,
     }
-    // Add any other fields you need for the user model
+},
+{
+	tableName: 'User'
 });
 
 // Create the User table in the database if it doesn't exist

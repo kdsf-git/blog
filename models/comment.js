@@ -22,6 +22,9 @@ const Comment = sequelize.define('Comment', {
 	type: DataTypes.TEXT,
 	allowNull: false
     }
+},
+{
+	tableName: 'Comment'
 });
 
 // Create the Comment table in the database if it doesn't exist

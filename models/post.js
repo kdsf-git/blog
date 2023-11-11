@@ -31,6 +31,9 @@ const Post = sequelize.define('Post', {
 	type: DataTypes.DATE,
 	allowNull: false
     }
+},
+{
+	tableName: 'Post'
 });
 
 // Create the Post table in the database if it doesn't exist

@@ -18,6 +18,9 @@ const Kudos = sequelize.define('Kudos', {
 	type: DataTypes.INTEGER,
 	allowNull: false
     }
+},
+{
+    tableName: 'Kudos'
 });
 
 // Create the Kudos table in the database if it doesn't exist
