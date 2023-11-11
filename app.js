@@ -11,7 +11,6 @@ const app = express();
 app.set("view engine", 'ejs');
 
 app.use(session({
-	genid: (req) => { return genuuid(); },
 	secret: "not a very good secret"
 }));
 
