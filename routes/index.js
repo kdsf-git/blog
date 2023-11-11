@@ -11,6 +11,7 @@ function getPostsByDate() {
 	}).then((result) => {
 		res = result;
 	});
+	return res;
 }
 
 // Routes
