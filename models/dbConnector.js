@@ -1,11 +1,14 @@
 const Sequelize = require("sequelize");
 const sequelize = new Sequelize(
-	"db",
-	"app",
-	"dbpassword",
-	{
+	database: "db",
+	username: "app",
+	password: "dbpassword",
+	options: {
 		host: "192.168.0.12",
-		dialect: "mysql"
+		dialect: "mysql",
+		define: {
+			freezeTableNames: true
+		}
 	}
 );
 
