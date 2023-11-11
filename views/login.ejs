@@ -1,8 +1,8 @@
-<% var head = () => { %>
+<%- include('./htmlTop.ejs') %>
     <title>User Login</title>
-<% } -%>
 
-<% var body = () => { %>
+<%- include('./htmlMiddle.ejs') %>
+
 <div class="container">
     <h1>User Login</h1>
 
@@ -19,6 +19,4 @@
     <p>Don't have an account? <a href="/register">Register here</a></p>
 </div>
 
-<% } -%>
-
-<%- include('./layout', {head, body}) %>
+<%- include('./htmlBottom.ejs') %>

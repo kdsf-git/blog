@@ -1,8 +1,8 @@
-<% var head = () => { %>
+<%- include('./htmlTop.ejs') %>
     <title>User Profile</title>
-<% } -%>
 
-<% var body = () => { %>
+<%- include('./htmlMiddle.ejs') %>
+
 <div class="container">
     <h1>User Profile</h1>
 
@@ -21,6 +21,4 @@
     </ul>
 </div>
 
-<% } -%>
-
-<%- include('./layout', {head, body}) %>
+<%- include('./htmlBottom.ejs') %>

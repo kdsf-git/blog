@@ -1,8 +1,8 @@
-<% var head = () => { %>
+<%- include('./htmlTop.ejs') %>
     <title>User Registration</title>
-<% } -%>
 
-<% var body = () => { %>
+<%- include('./htmlMiddle.ejs') %>
+
 <div class="container">
     <h1>User Registration</h1>
 
@@ -19,6 +19,5 @@
         <button type="submit">Register</button>
     </form>
 </div>
-<% } -%>
 
-<%- include('./layout', {head, body}) %>
+<%- include('./htmlBottom.ejs') %>
