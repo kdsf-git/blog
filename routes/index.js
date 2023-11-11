@@ -12,8 +12,9 @@ async function getPostsByDate() {
 
 // Routes
 router.get('/', (req, res) => {
-    const posts = getPostsByDate();
-    res.render('index', { posts });
+    getPostsByDate().then(posts => {
+    	res.render('index', { posts });
+    });
 });
 
 // Start the server
