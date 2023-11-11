@@ -23,12 +23,24 @@ Post.hasMany(Comment, {
 Post.hasMany(Kudos, {
 	foreignKey: 'post'
 });
-Post.belongsTo(User);
+Post.belongsTo(User, {
+	foreignKey: 'username'
+});
 
-Comment.belongsTo(Post);
-Comment.belongsTo(User);
+Comment.belongsTo(Post, {
+	foreignKey: 'post'
+});
+Comment.belongsTo(User, {
+	foreignKey: 'username'
+});
 
-Kudos.belongsTo(User);
-Kudos.belongsTo(Post);
+Kudos.belongsTo(User, {
+	foreignKey: 'username'
+});
+Kudos.belongsTo(Post, {
+	foreignKey: 'post'
+});
 
-Session.belongsTo(User);
+Session.belongsTo(User, {
+	foreignKey: 'username'
+});
