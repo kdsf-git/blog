@@ -6,7 +6,7 @@ const Session = require('./session.js');
 async function getUserFromSession(session) {
 	if(session.sessionId) {
 		const sid = session.sessionId;
-		return await sequelize.transaction(() => {
+		return await sequelize.transaction(async () => {
 			await Session.destroy({
 				where: {
 					date: {
