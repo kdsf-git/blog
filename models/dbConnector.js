@@ -1,9 +1,9 @@
 const Sequelize = require("sequelize");
 const sequelize = new Sequelize(
-	database: "db",
-	username: "app",
-	password: "dbpassword",
-	options: {
+	"db",
+	"app",
+	"dbpassword",
+	{
 		host: "192.168.0.12",
 		dialect: "mysql",
 		define: {
