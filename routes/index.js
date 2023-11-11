@@ -3,15 +3,11 @@ const router = express.Router();
 const Post = require('../models/post.js');
 
 function getPostsByDate() {
-	let res = [];
-	Post.findAll({
+	return await Post.findAll({
 		order: [
 			['date', 'DESC']
 		]
-	}).then((result) => {
-		res = result;
 	});
-	return res;
 }
 
 // Routes
