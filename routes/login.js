@@ -4,7 +4,8 @@ const router = express.Router();
 
 // Login Page
 router.get('/', (req, res) => {
-    res.render('login');
+    const error = req.query.error;
+    res.render('login', { error });
 });
 
 // Handle Login (form submission)
