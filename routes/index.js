@@ -13,6 +13,7 @@ function getPostsByDate() {
 // Routes
 router.get('/', (req, res) => {
     const posts = getPostsByDate();
+    console.log(posts);
     res.render('index', { posts });
 });
 
