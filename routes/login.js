@@ -1,4 +1,5 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const router = express.Router();
 const am = require('../models/authManager.js');
 
@@ -15,7 +16,7 @@ router.get('/', (req, res) => {
 });
 
 // Handle Login (form submission)
-router.post('/', (req, res) => {
+router.post('/', bodyParser.urlencoded(), (req, res) => {
 	const { email, password } = req.body;
 	am.login(email, password).then(sid => {
 		if(sid) {
