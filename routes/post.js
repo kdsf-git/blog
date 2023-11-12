@@ -34,7 +34,7 @@ async function getPost(pid) {
 }
 
 async function modifyPost(pid, tit, cont, kw) {
-	return await sequelize.transaction(() => {
+	return await sequelize.transaction(async () => {
 		let post = await getPost(pid);
 		post.set({
 			title: tit,
