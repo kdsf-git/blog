@@ -62,9 +62,7 @@ async function searchPosts(query, searchBy, kw, sortBy) {
 			break;
 	}
 
-	console.log(q);
-
-	console.log(await Post.findAll(q));
+	return await Post.findAll(q);
 }
 
 // GET route for displaying the search form

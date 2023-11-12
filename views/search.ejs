@@ -45,11 +45,11 @@
                 <ul class="list-group">
                     <% results.forEach(post => { %>
                         <li class="list-group-item">
-                            <h4><a href="/post/<%= post._id %>"><%= post.title %></a></h4>
+                            <h4><a href="/post/<%= post.id %>"><%= post.title %></a></h4>
                             <p><%= post.content.substring(0, 100) %>...</p>
-                            <p>Author: <%= post.author %></p>
+                            <p>Author: <%= post.username %></p>
                             <p>Date: <%= post.date %></p>
-                            <p>Kudos: <%= post.kudos %></p>
+                            <p>Kudos: <%= post.nKudos %></p>
                         </li>
                     <% }) %>
                 </ul>
