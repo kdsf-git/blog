@@ -1,0 +1,32 @@
+<% include ./layout.ejs %>
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <h2>Search</h2>
+        <form action="/search" method="get">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Search for posts..." name="query" required>
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="submit">Search</button>
+                </div>
+            </div>
+        </form>
+
+        <% if (searchResults.length > 0) { %>
+            <h3>Results:</h3>
+            <ul>
+                <% searchResults.forEach(result => { %>
+                    <li>
+                        <a href="/post/<%= result._id %>"><%= result.title %></a>
+                    </li>
+                <% }) %>
+            </ul>
+        <% } else { %>
+            <p>No results found.</p>
+        <% } %>
+    </div>
+</div>
+
+</body>
+
+</html>
