@@ -1,4 +1,4 @@
-const { op } = require('sequelize');
+const { Op } = require('sequelize');
 const moment = require('moment');
 const sequelize = require('./dbConnector.js');
 const User = require('./user.js');
@@ -11,7 +11,7 @@ async function getUserFromSession(session) {
 			await Session.destroy({
 				where: {
 					date: {
-						[op.gt]: moment().add(1, 'days').toDate()
+						[Op.gt]: moment().add(1, 'days').toDate()
 					}
 				}
 			});
@@ -65,6 +65,7 @@ async function logout(session) {
 				id: sid
 			}
 		});
+		session.sessionId = null;
 		session.destroy();
 	}
 }
