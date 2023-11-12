@@ -14,8 +14,8 @@ async function getUser(un) {
 // Profile Page
 router.get('/:username', (req, res) => {
 	am.getUserFromSession(req.session).then(user => {
-		if(user) {
-			const u = getUser(user);
+		const u = getUser(user);
+		if(u) {
 			if(user == req.params.username) {
 				//editable version
 				res.render('profile-we', { user, u });
