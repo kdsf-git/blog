@@ -149,7 +149,7 @@ router.post('/:postId/edit', bodyParser.urlencoded(), (req, res) => {
 			getPost(req.params.postId).then(post => {
 				if(post) {
 					if(user == post.username) {
-						{ title, content, keywords } = req.body;
+						const { title, content, keywords } = req.body;
 						modifyPost(post.id, title, content, keywords).then(() => {
 							res.redirect("/post/" + req.params.postId);
 						});
