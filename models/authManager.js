@@ -11,7 +11,7 @@ async function getUserFromSession(session) {
 			await Session.destroy({
 				where: {
 					date: {
-						[op.gt]: moment().add(1, 'days').todate()
+						[op.gt]: moment().add(1, 'days').toDate()
 					}
 				}
 			});
@@ -26,7 +26,7 @@ async function getUserFromSession(session) {
 				}]
 			});
 			if(sess) {
-				sess.date = moment().todate();
+				sess.date = moment().toDate();
 				await sess.save();
 				return sess.username;
 			} else {
@@ -49,7 +49,7 @@ async function login(em, pw) {
 		if(user) {
 			const sess = await Session.create({
 				username: user.username,
-				date: moment().todate()
+				date: moment().toDate()
 			});
 			return sess.id;
 		} else {
