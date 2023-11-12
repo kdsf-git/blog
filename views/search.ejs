@@ -48,7 +48,9 @@
                             <h4><a href="/post/<%= post.id %>"><%= post.title %></a></h4>
                             <p><%= post.content.substring(0, 100) %>...</p>
                             <p>Author: <%= post.username %></p>
+			    <p>Keywords: <%= post.keywords %></p>
                             <p>Date: <%= post.date %></p>
+			    <p>Views: <%= post.views %></p>
                             <p>Kudos: <%= post.nKudos %></p>
                         </li>
                     <% }) %>
