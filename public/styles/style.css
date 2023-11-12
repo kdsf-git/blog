@@ -142,6 +142,7 @@ li {
 
 textarea {
     resize: none;
+    grid-auto-rows: auto;
     overflow: hidden;
     min-height: 50px;
     max-height: 100px;
