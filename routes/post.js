@@ -62,6 +62,15 @@ async function getKudos(un, pid) {
 	});
 }
 
+async function getNKudos(pid) {
+	const kudos = await Kudos.findAll({
+		where: {
+			post: pid
+		}
+	});
+	return kudos.length;
+}
+
 async function toggleKudos(un, pid) {
 	return await sequelize.transaction(async () => {
 		const kudos = await getKudos(un, pid);
@@ -83,7 +92,9 @@ router.get('/:postId', (req, res) => {
 			getComments(req.params.postId).then(comments => {
 				am.getUserFromSession(req.session).then(user => {
 					getKudos(user, req.params.postId).then(kudos => {
-						res.render('single-post', { user, post, comments, kudos });
+						getNKudos(req.params.postId).then(nKudos => {
+							res.render('single-post', { user, post, comments, kudos, nKudos });
+						});
 					});
 				});
 			});

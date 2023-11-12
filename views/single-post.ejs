@@ -9,6 +9,7 @@
     <p>Keywords: <%= post.keywords %></p>
     <p>Author: <a href="/user/<%= post.username %>"><%= post.username %></a></p>
     <p>Views: <%= post.views %></p>
+    <p>Kudos: <%= nKudos %></p>
     <% if(user == post.username) { %>
         <form method="POST" action="/post/<%= post.id %>/edit">
 	    <button type="submit">Edit</button>
@@ -19,7 +20,7 @@
     <% } %>
     <% if(user) { %>
 	<form method="POST" action="/post/<%= post.id %>/kudos">
-	    <button <% if(kudos) { %>style="background-color:lime;border-color:lime;color:white" <% } %>type="submit">Kudos</button>
+	    <button <% if(kudos) { %>style="background-color:lime;border-color:lime" <% } %>type="submit">Kudos</button>
 	</form>
 	<form method="POST" action="/post/<%= post.id %>/comment">
 	    <label for="content">Comment: </label>
