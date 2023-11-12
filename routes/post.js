@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const moment = require('moment');
+const bodyParser = require('body-parser');
 const Post = require('../models/post.js');
 const Comment = require('../models/comment.js');
 const am = require('../models/authManager.js');
@@ -22,6 +24,14 @@ async function getPostAndView(pid) {
 	});
 }
 
+async function getPost(pid) {
+	return await Post.findOne({
+		where: {
+			id: pid
+		}
+	});
+}
+
 async function getComments(pid) {
 	return await Comment.findAll({
 		where: {
@@ -30,6 +40,15 @@ async function getComments(pid) {
 		order: [
 			[ 'date', 'ASC' ]
 		]
+	});
+}
+
+async function postComment(pid, un, c) {
+	return await Comment.create({
+		post: pid,
+		username: un,
+		content: c,
+		date: moment().toDate()
 	});
 }
 
@@ -82,6 +101,24 @@ router.post('/:postId/delete', async (req, res) => {
         console.error(err);
         res.status(500).send('Internal Server Error');
     }
+});
+
+router.post('/:postId/comment', bodyParser.urlencoded(), async (req, res) => {
+	am.getUserFromSession(req.session).then(user => {
+		if(user) {
+			getPost(req.params.postId).then(post => {
+				if(post) {
+					postComment(post.id, user, req.body.content).then(() => {
+						res.redirect("/post/" + req.params.postId + "/comment");
+					});
+				} else {
+					res.status(404).send("Post not found");
+				}
+			});
+		} else {
+			res.redirect('/' + req.params.postId);
+		}
+	});
 });
 
 module.exports = router;
