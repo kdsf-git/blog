@@ -1,19 +1,30 @@
 const express = require('express');
 const router = express.Router();
+const am = require('../models/authManager.js');
 
 // Register Page
 router.get('/', (req, res) => {
-    res.render('register');
+	const error = req.query.error;
+	am.getUserFromSession(req.session).then(username => {
+		if(username) {
+			res.redirect("/");
+		} else {
+			res.render('register', { error });
+		}
+	});
 });
 
 // Handle Registration (form submission)
 router.post('/', (req, res) => {
-    // Replace this with your actual user registration logic
-    const { username, email, password } = req.body;
-    // Implement user registration logic, create a new user record, and redirect after successful registration
-    // You can also add validation and hashing for password security
-
-    res.redirect('/login'); // Redirect to the login page after successful registration
+	const { email, password, username } = req.body;
+	am.register(email, password, username).then(sid => {
+		if(sid) {
+			req.session.sessionId = sid;
+			res.redirect("/");
+		} else {
+			res.redirect("/register?error=1");
+		}
+	});
 });
 
 module.exports = router;

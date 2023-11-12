@@ -5,7 +5,9 @@
 
 <div class="container">
     <h1>User Registration</h1>
-
+    <% if(error) { %>
+        <p>Username already in use</p>
+    <% } %>
     <form method="POST" action="/register" enctype="multipart/form-data">
         <label for="email">Email</label>
         <input type="email" id="email" name="email" required>

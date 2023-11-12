@@ -69,4 +69,24 @@ async function logout(session) {
 	}
 }
 
-module.exports = {login, logout, getUserFromSession};
+async function register(em, pw, un) {
+	return await sequelize.transaction(async () => {
+		const user = await User.findOne({
+			where: {
+				username: un
+			}
+		});
+		if(user) {
+			return null;
+		} else {
+			await User.create({
+				username: un,
+				email: em,
+				password: pw
+			});
+			return await login(em, pw);
+		}
+	});
+}
+
+module.exports = {login, logout, register, getUserFromSession};
