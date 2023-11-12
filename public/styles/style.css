@@ -4,7 +4,10 @@ body, h1, h2, h3, p, ul, li {
     padding: 0;
 }
 
-#flex { width: 80% }
+.flex {
+    height: fit-content;
+    width: 80% ;
+}
 
 /* Basic styles for the body */
 body {
