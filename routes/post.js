@@ -52,13 +52,43 @@ async function postComment(pid, un, c) {
 	});
 }
 
+async function getKudos(un, pid) {
+	return await Kudos.findOne({
+		where: {
+			username: un,
+			post: pid
+		}
+	});
+}
+
+async function toggleKudos(un, pid) {
+	return await sequelize.transaction(async () => {
+		const kudos = await Kudos.findOne({
+			where: {
+				username: un,
+				post: pid
+			}
+		});
+		if(kudos) {
+			await kudos.destroy();
+		} else {
+			await Kudos.create({
+				username: un,
+				post: pid
+			});
+		}
+	});
+}
+
 // Display a specific blog post
-router.get('/:postId', async (req, res) => {
+router.get('/:postId', (req, res) => {
 	getPostAndView(req.params.postId).then(post => {
 		if(post) {
 			getComments(req.params.postId).then(comments => {
 				am.getUserFromSession(req.session).then(user => {
-					res.render('single-post', { user, post, comments });
+					getKudos(user, req.params.postId).then(kudos => {
+						res.render('single-post', { user, post, comments, kudos });
+					});
 				});
 			});
 		} else {
@@ -68,7 +98,7 @@ router.get('/:postId', async (req, res) => {
 });
 
 // Create a new blog post (form submission)
-router.post('/create', async (req, res) => {
+router.post('/create', (req, res) => {
     try {
         const { title, content, tags } = req.body;
         const newPost = new Post({ title, content, tags, author: req.user.id }); // Assuming user is authenticated
@@ -81,7 +111,7 @@ router.post('/create', async (req, res) => {
 });
 
 // Update an existing blog post (form submission)
-router.post('/:postId/edit', async (req, res) => {
+router.post('/:postId/edit', (req, res) => {
     try {
         const { title, content, tags } = req.body;
         const post = await Post.findByIdAndUpdate(req.params.postId, { title, content, tags }, { new: true });
@@ -93,7 +123,7 @@ router.post('/:postId/edit', async (req, res) => {
 });
 
 // Delete a blog post
-router.post('/:postId/delete', async (req, res) => {
+router.post('/:postId/delete', (req, res) => {
     try {
         await Post.findByIdAndRemove(req.params.postId);
         res.redirect('/');
@@ -103,7 +133,25 @@ router.post('/:postId/delete', async (req, res) => {
     }
 });
 
-router.post('/:postId/comment', bodyParser.urlencoded(), async (req, res) => {
+router.post('/:postId/kudos', (req, res) => {
+	am.getUserFromSession(req.session).then(user => {
+		if(user) {
+			getPost(req.params.postId).then(post => {
+				if(post) {
+					toggleKudos(user.username, req.params.postId).then(() => {
+						res.redirect("/" + req.params.postId);
+					});
+				} else {
+					res.status(404).send("Post not found");
+				}
+			});
+		} else {
+			res.redirect("/" + req.params.postId);
+		}
+	});
+}
+
+router.post('/:postId/comment', bodyParser.urlencoded(), (req, res) => {
 	am.getUserFromSession(req.session).then(user => {
 		if(user) {
 			getPost(req.params.postId).then(post => {
