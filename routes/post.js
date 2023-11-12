@@ -39,7 +39,7 @@ router.get('/:postId', async (req, res) => {
 		if(post) {
 			getComments(req.params.postId).then(comments => {
 				am.getUserFromSession(req.session).then(user => {
-					res.render('single-post-we', { user, post, comments });
+					res.render('single-post', { user, post, comments });
 				});
 			});
 		} else {
