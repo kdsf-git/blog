@@ -21,6 +21,10 @@ const Comment = sequelize.define('Comment', {
     content: {
 	type: DataTypes.TEXT,
 	allowNull: false
+    },
+    date: {
+	type: DataTypes.DATE,
+	    allowNull: false
     }
 },
 {
