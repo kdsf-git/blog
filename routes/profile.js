@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const am = require('../models/authManager.js');
 const User = require('../models/user.js');
+const Post = require('../models/post.js');
 
 async function getUser(un) {
 	return await User.findOne({
