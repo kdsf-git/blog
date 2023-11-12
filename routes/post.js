@@ -4,6 +4,7 @@ const moment = require('moment');
 const bodyParser = require('body-parser');
 const Post = require('../models/post.js');
 const Comment = require('../models/comment.js');
+const Kudos = require('../models/Kudos.js');
 const am = require('../models/authManager.js');
 const sequelize = require('../models/dbConnector.js');
 
