@@ -109,14 +109,14 @@ router.post('/:postId/comment', bodyParser.urlencoded(), async (req, res) => {
 			getPost(req.params.postId).then(post => {
 				if(post) {
 					postComment(post.id, user, req.body.content).then(() => {
-						res.redirect("/post/" + req.params.postId + "/comment");
+						res.redirect("/post/" + req.params.postId);
 					});
 				} else {
 					res.status(404).send("Post not found");
 				}
 			});
 		} else {
-			res.redirect('/' + req.params.postId);
+			res.redirect('/post/' + req.params.postId);
 		}
 	});
 });
