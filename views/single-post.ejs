@@ -7,7 +7,7 @@
     <h1><%= post.title %></h1>
     <p><%= post.content %></p>
     <p>Keywords: <%= post.keywords %></p>
-    <a href="/user/<%= post.username %>"><p>Author: <%= post.username %></p></a>
+    <p>Author: <a href="/user/<%= post.username %>"><%= post.username %></a></p>
     <p>Views: <%= post.views %></p>
     <% if(user == post.username) { %>
         <form method="POST" action="/post/<%= post.id %>/edit">
