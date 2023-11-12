@@ -3,7 +3,7 @@ const router = express.Router();
 const am = require('../models/authManager.js');
 
 router.get('/', (req, res) => {
-	am.logout().then(() => {
+	am.logout(req.session).then(() => {
 		res.redirect("/");
 	});
 });
