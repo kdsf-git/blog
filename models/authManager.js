@@ -65,6 +65,7 @@ async function logout(session) {
 				id: sid
 			}
 		});
+		session.destroy();
 	}
 }
 

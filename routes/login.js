@@ -20,7 +20,7 @@ router.post('/', bodyParser.urlencoded(), (req, res) => {
 	const { email, password } = req.body;
 	am.login(email, password).then(sid => {
 		if(sid) {
-			res.session.sessionId = sid;
+			req.session.sessionId = sid;
 			res.redirect('/');
 		} else {
 			res.redirect('/login?error=1');
