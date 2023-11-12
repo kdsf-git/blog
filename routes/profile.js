@@ -11,20 +11,31 @@ async function getUser(un) {
 	});
 }
 
+async function getPostsByUser(un) {
+	return await Post.findAll({
+		where: {
+			username: un
+		}
+	});
+}
+
 // Profile Page
 router.get('/:username', (req, res) => {
 	am.getUserFromSession(req.session).then(user => {
-		const u = getUser(user);
-		if(u) {
-			if(user == req.params.username) {
-				//editable version
-				res.render('profile-we', { user, u });
+		getUser(user).then(u => {
+			if(u) {
+				getPostsByUser(user).then(posts => {
+					if(user == req.params.username) {
+						//editable version
+						res.render('profile-we', { user, u, posts });
+					} else {
+						//read-only version
+						res.render('profile-ro', { user, u, posts });
+					}
+				}
 			} else {
-				//read-only version
-				res.render('profile-ro', { user, u });
+				res.status(404).send("User not found");
 			}
-		} else {
-			res.status(404).send("User not found");
 		}
 	});
 });
