@@ -97,6 +97,25 @@ async function toggleKudos(un, pid) {
 		}
 	});
 }
+async function destroyPost(pid) {
+	return await sequelize.transaction(async () => {
+		await Post.destroy({
+			where: {
+				id: pid
+			}
+		});
+		await Comment.destroy({
+			where: {
+				post: pid
+			}
+		});
+		await Kudos.destroy({
+			where: {
+				post: pid
+			}
+		});
+	});
+}
 
 // Display a specific blog post
 router.get('/:postId', (req, res) => {
@@ -168,7 +187,25 @@ router.post('/:postId/edit', bodyParser.urlencoded(), (req, res) => {
 
 // Delete a blog post
 router.post('/:postId/delete', (req, res) => {
-
+	am.getUserFromSession(req.session).then(user => {
+		if(user) {
+			getPost(req.params.postId).then(post => {
+				if(post) {
+					if(user == post.username) {
+						destroyPost(req.params.postId).then(() => {
+							res.redirect("/");
+						});
+					} else {
+						res.status(402).send("Forbidden");
+					}
+				} else {
+					res.status(404).send("Post not found");
+				}
+			});
+		} else {
+			res.redirect("/post/" + req.params.postId);
+		}
+	});
 });
 
 router.post('/:postId/kudos', (req, res) => {
