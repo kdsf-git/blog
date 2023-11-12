@@ -47,8 +47,8 @@ router.post("/:username", bodyParser.urlencoded(), (req, res) => {
 	am.getUserFromSession(req.session).then(user => {
 		if(user) {
 			if(user == req.params.username) {
-				const { username, email, bio, password } = req.body;
-				am.modify(username, email, bio, password).then(error => {
+				const { email, bio, password } = req.body;
+				am.modify(user, email, bio, password).then(error => {
 					if(error) {
 						res.redirect("/user/" + req.params.username + "?error=1");
 					} else {
