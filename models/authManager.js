@@ -73,7 +73,10 @@ async function register(em, pw, un) {
 	return await sequelize.transaction(async () => {
 		const user = await User.findOne({
 			where: {
-				username: un
+				[Op.or]: {
+					username: un,
+					email: em
+				}
 			}
 		});
 		if(user) {
