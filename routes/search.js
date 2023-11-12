@@ -20,7 +20,8 @@ router.get('/search', (req, res) => {
 	const keywords = null;
 	const sortBy = null;
 	const order = null;
-	res.render('search', { query, searchBy, keywords, sortBy, order });
+	const results = [];
+	res.render('search', { query, searchBy, keywords, sortBy, order, results });
 });
 
 // POST route for handling the search form submission
