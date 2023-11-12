@@ -3,7 +3,9 @@
 <div class="card">
 	<div class="card-body">
 		<h2 class="card-title"><%= post.title %></h2>
-		<p class="card-text"><%= post.content %></p>
+		<p class="card-text">
+			<body><%= post.content %></body>
+		</p>
 		<p class="card-text">Keywords: <%= post.keywords %></p>
 		<p class="card-text">Author: <a href="/user/<%= post.username %>"><%= post.username %></a></p>
 		<p class="card-text"><small class="text-muted">Published on <%= post.date %></small></p>
