@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const router = express.Router();
 const sequelize = require('../models/dbConnector.js');
+const { Op } = require('sequelize');
 const am = require('../models/authManager.js');
 const Post = require('../models/post.js');
 const Kudos = require('../models/kudos.js');
@@ -28,6 +29,40 @@ async function searchPosts(query, searchBy, kw, sortBy) {
 		group: [ 'Post.id' ],
 		raw: true
 	};
+
+	switch(searchBy) {
+		case 'title':
+			q.where = {
+				title: { [Op.like]: "%"+query+"%" }
+			};
+			break;
+		case 'author':
+			q.where = {
+				username: { [Op.like]:"%"+ query+"%" }
+			};
+			break;
+	}
+
+	if(kw) {
+		q.where.keywords = { [Op.like]: "%"+kw+"%" };
+	}
+
+	switch(sortBy) {
+		case 'dateAsc':
+			q.order = [['date', 'ASC']];
+			break;
+		case 'dateDesc':
+			q.order = [['date', 'DESC']];
+			break;
+		case 'kudosAsc':
+			q.order = [['nKudos', 'ASC']];
+			break;
+		case 'kudosDesc':
+			q.order = [['nKudos', 'DESC']];
+			break;
+	}
+
+	console.log(q);
 
 	console.log(await Post.findAll(q));
 }
