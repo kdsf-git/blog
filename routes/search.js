@@ -19,7 +19,7 @@ async function searchPosts(query, searchBy, kw, sortBy) {
 			'views',
 			'date',
 			[ sequelize.fn('COUNT', sequelize.col('Kudos.id')), 'nKudos' ],
-			[ sequelize.fn('COUNT', sequelize.col('Comment.id')), 'nComment' ]
+			//[ sequelize.fn('COUNT', sequelize.col('Comment.id')), 'nComment' ]
 		],
 		include: [
 			{
