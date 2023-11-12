@@ -8,7 +8,7 @@ router.get('/', (req, res) => {
 	const error = req.query.error;
 	am.getUserFromSession(req.session).then(username => {
 		if(username) {
-			res.redirect("/");
+			res.redirect("/user/" + username);
 		} else {
 			res.render('register', { error });
 		}
@@ -18,12 +18,18 @@ router.get('/', (req, res) => {
 // Handle Registration (form submission)
 router.post('/', bodyParser.urlencoded(), (req, res) => {
 	const { email, password, username } = req.body;
-	am.register(email, password, username).then(sid => {
-		if(sid) {
-			req.session.sessionId = sid;
-			res.redirect("/");
+	am.getUserFromSession(req.session).then(un => {
+		if(un) {
+			res.redirect("/user/" + un);
 		} else {
-			res.redirect("/register?error=1");
+			am.register(email, password, username).then(sid => {
+				if(sid) {
+					req.session.sessionId = sid;
+					res.redirect("/");
+				} else {
+					res.redirect("/register?error=1");
+				}
+			});
 		}
 	});
 });

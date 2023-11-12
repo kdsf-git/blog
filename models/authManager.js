@@ -92,4 +92,37 @@ async function register(em, pw, un) {
 	});
 }
 
-module.exports = {login, logout, register, getUserFromSession};
+async function modify(un, em, b, pw) {
+	return await sequelize.transaction(async () => {
+		const existingUser = await User.findOne({
+			where: {
+				username: {
+					[Op.ne]: un
+				},
+				email: em
+			}
+		});
+		if(existingUser) {
+			return 1;
+		} else {
+			let currentUser = await User.findOne({
+				where: {
+					username: un
+				}
+			});
+			if(currentUser) {
+				currentUser.set({
+					email: em,
+					bio: b,
+					password: pw
+				});
+				await currentUser.save();
+				return null;
+			} else {
+				return 1;
+			}
+		}
+	});
+}
+
+module.exports = {login, logout, register, modify, getUserFromSession};

@@ -1,0 +1,33 @@
+<%- include('./htmlTop.ejs') %>
+    <title>User Profile</title>
+
+<%- include('./htmlMiddle.ejs') %>
+
+<div class="container">
+    <h1>User Profile</h1>
+
+    <form method="POST" action="/user">
+	<h2>Username: <%= u.username %></h2>
+	<label for="email">Email:</label>
+	<input type="email" id="email" name="email" value="<%= u.email %>">
+	<label for="bio">Bio:</label>
+	<input type="text" id="bio" name="bio" value="<%= u.bio %>">
+	<label for="password">Password:</label>
+	<input type="password" id="password" name="password">
+	<button type="submit">Save changes</button>
+    </form>
+    <% if(error) { %>
+	<p>Email already in use by another user</p>
+    <% } %>
+
+    <h2>Published Posts</h2>
+    <ul class="post-list">
+        <% posts.forEach(function(post) { %>
+            <li>
+                <a href="/post/<%= post._id %>"><%= post.title %></a>
+            </li>
+        <% }); %>
+    </ul>
+</div>
+
+<%- include('./htmlBottom.ejs') %>

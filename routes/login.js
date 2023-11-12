@@ -18,12 +18,18 @@ router.get('/', (req, res) => {
 // Handle Login (form submission)
 router.post('/', bodyParser.urlencoded(), (req, res) => {
 	const { email, password } = req.body;
-	am.login(email, password).then(sid => {
-		if(sid) {
-			req.session.sessionId = sid;
-			res.redirect('/');
+	am.getUserFromSession(req.session).then(username => {
+		if(username) {
+			res.redirect('/user/' + username);
 		} else {
-			res.redirect('/login?error=1');
+			am.login(email, password).then(sid => {
+				if(sid) {
+					req.session.sessionId = sid;
+					res.redirect('/');
+				} else {
+					res.redirect('/login?error=1');
+				}
+			});
 		}
 	});
 });
