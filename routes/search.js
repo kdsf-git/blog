@@ -1,10 +1,39 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const router = express.Router();
+const sequelize = require('../models/dbConnector.js');
 const am = require('../models/authManager.js');
+const Post = require('../models/post.js');
+const Kudos = require('../models/kudos.js');
+const Comment = require('../models/comment.js');
 
 async function searchPosts(query, searchBy, kw, sortBy) {
 	
+	let q = {
+		attributes: [
+			'id',
+			'title',
+			'username',
+			'keywords',
+			'content',
+			'views',
+			'date',
+			[ sequelize.fn('COUNT', sequelize.col('Kudos.id')), 'nKudos' ],
+			[ sequelize.fn('COUNT', sequelize.col('Comment.id')), 'nComment' ]
+		],
+		include: [
+			{
+				model: Kudos
+			},
+			{
+				model: Comment
+			}
+		],
+		group: [ 'Post.id'],
+		raw: true
+	};
+
+	console.log(await Post.findAll(q));
 }
 
 // GET route for displaying the search form
