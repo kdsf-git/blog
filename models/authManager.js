@@ -17,7 +17,6 @@ async function getUserFromSession(session) {
 			});
 			let sess = await Session.findOne({
 				where: {
-					username: '$User.username$',
 					id: sid
 				},
 				include: [{

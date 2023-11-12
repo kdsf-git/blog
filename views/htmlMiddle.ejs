@@ -4,7 +4,7 @@
     <nav>
         <ul>
             <li><a href="/">Home</a></li>
-            <% if (typeof user == 'object' && user) { %>
+            <% if (typeof user == 'string' && user) { %>
                 <li><a href="/profile">Profile</a></li>
                 <li><a href="/logout">Logout</a></li>
             <% } else { %>
