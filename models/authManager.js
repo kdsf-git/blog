@@ -61,7 +61,7 @@ async function logout(session) {
 	if(session.sessionId) {
 		await Session.destroy({
 			where: {
-				id: sid
+				id: session.sessionId
 			}
 		});
 		session.sessionId = null;
