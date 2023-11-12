@@ -22,9 +22,9 @@ async function getPostsByUser(un) {
 // Profile Page
 router.get('/:username', (req, res) => {
 	am.getUserFromSession(req.session).then(user => {
-		getUser(user).then(u => {
+		getUser(req.params.username).then(u => {
 			if(u) {
-				getPostsByUser(user).then(posts => {
+				getPostsByUser(u.username).then(posts => {
 					if(user == req.params.username) {
 						//editable version
 						res.render('profile-we', { user, u, posts });
