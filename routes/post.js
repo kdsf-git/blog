@@ -1,30 +1,51 @@
 const express = require('express');
 const router = express.Router();
-const Post = require('../models/post'); // Assuming you have a Post model
+const Post = require('../models/post.js');
+const Comment = require('../models/comment.js');
+const am = require('../models/authManager.js');
+const sequelize = require('../models/dbConnector.js');
 
-// List all blog posts
-router.get('/', async (req, res) => {
-    try {
-        const posts = await Post.find();
-        res.render('index', { posts });
-    } catch (err) {
-        console.error(err);
-        res.status(500).send('Internal Server Error');
-    }
-});
+async function getPostAndView(pid) {
+	return await sequelize.transaction(async () => {
+		let p = await Post.findOne({
+			where: {
+				id: pid
+			}
+		});
+		if(p) {
+			p.views = p.views + 1;
+			p.save();
+			return p;
+		} else {
+			return null;
+		}
+	});
+}
+
+async function getComments(pid) {
+	return await Comment.findAll({
+		where: {
+			post: pid
+		},
+		order: [
+			[ 'date': 'ASC' ]
+		]
+	});
+}
 
 // Display a specific blog post
 router.get('/:postId', async (req, res) => {
-    try {
-        const post = await Post.findById(req.params.postId);
-        if (!post) {
-            return res.status(404).send('Post not found');
-        }
-        res.render('single-post', { post });
-    } catch (err) {
-        console.error(err);
-        res.status(500).send('Internal Server Error');
-    }
+	getPostAndView(req.params.postId).then(post => {
+		if(post) {
+			getComments(req.params.postId).then(comments => {
+				am.getUserFromSession(req.session).then(user => {
+					res.render('single-post-we', { user, post, comments });
+				});
+			});
+		} else {
+			res.status(404).send("Post not found");
+		}
+	});
 });
 
 // Create a new blog post (form submission)

@@ -9,6 +9,14 @@
     <p>Keywords: <%= post.keywords %></p>
     <p>Author: <%= post.username %></p>
     <p>Views: <%= post.views %></p>
+    <% if(user == post.username) { %>
+        <form method="POST" action="/post/<%= post.id %>/edit">
+	    <button type="submit">Edit</button>
+        </form>
+	<form method "POST" action="/post/<%= post.id %>/delete">
+	    <button type="submit">Delete</button>
+	</form>
+    <% } %>
     <ul>
 	<% comments.forEach(function(comment) { %>
 	    <li>
