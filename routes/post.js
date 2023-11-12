@@ -128,7 +128,7 @@ router.post('/:postId/kudos', (req, res) => {
 			res.redirect("/" + req.params.postId);
 		}
 	});
-}
+});
 
 router.post('/:postId/comment', bodyParser.urlencoded(), (req, res) => {
 	am.getUserFromSession(req.session).then(user => {
