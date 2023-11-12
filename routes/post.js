@@ -64,12 +64,7 @@ async function getKudos(un, pid) {
 
 async function toggleKudos(un, pid) {
 	return await sequelize.transaction(async () => {
-		const kudos = await Kudos.findOne({
-			where: {
-				username: un,
-				post: pid
-			}
-		});
+		const kudos = await getKudos(un, pid);
 		if(kudos) {
 			await kudos.destroy();
 		} else {
@@ -118,7 +113,7 @@ router.post('/:postId/kudos', (req, res) => {
 		if(user) {
 			getPost(req.params.postId).then(post => {
 				if(post) {
-					toggleKudos(user.username, req.params.postId).then(() => {
+					toggleKudos(user, req.params.postId).then(() => {
 						res.redirect("/" + req.params.postId);
 					});
 				} else {
