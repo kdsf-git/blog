@@ -22,6 +22,7 @@ const loginRoutes = require('./routes/login');
 const logoutRoutes = require('./routes/logout');
 const profileRoutes = require('./routes/profile');
 const registerRoutes = require('./routes/register');
+const searchRoutes = require('./routes/search');
 
 app.use("/", indexRoutes);
 app.use("/post", postRoutes);
@@ -29,6 +30,7 @@ app.use("/login", loginRoutes);
 app.use("/logout", logoutRoutes);
 app.use("/user", profileRoutes);
 app.use("/register", registerRoutes);
+app.use("/search", searchRoutes);
 
 
 // Implement user authentication, post creation, comments, likes, search, etc.
