@@ -25,13 +25,14 @@ router.get('/:username', (req, res) => {
 	am.getUserFromSession(req.session).then(user => {
 		getUser(req.params.username).then(u => {
 			if(u) {
+				const error = null;
 				getPostsByUser(u.username).then(posts => {
 					if(user == req.params.username) {
 						//editable version
-						res.render('profile-we', { user, u, posts });
+						res.render('profile-we', { user, u, posts, error });
 					} else {
 						//read-only version
-						res.render('profile-ro', { user, u, posts });
+						res.render('profile-ro', { user, u, posts, error });
 					}
 				});
 			} else {
