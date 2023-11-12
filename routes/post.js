@@ -117,6 +117,17 @@ async function destroyPost(pid) {
 	});
 }
 
+async function createPost(un, tit, cont, kw) {
+	return await Post.create({
+		username: un,
+		title: tit,
+		content: cont,
+		keywords: kw,
+		views: 0,
+		date: moment().toDate()
+	});
+}
+
 // Display a specific blog post
 router.get('/:postId', (req, res) => {
 	getPostAndView(req.params.postId).then(post => {
@@ -136,9 +147,28 @@ router.get('/:postId', (req, res) => {
 	});
 });
 
-// Create a new blog post (form submission)
-router.post('/create', (req, res) => {
+router.get('/new', (req, res) => {
+	am.getUserFromSession(req.session).then(user => {
+		if(user) {
+			res.render("create-post", { user });
+		} else {
+			res.redirect("/");
+		}
+	});
+});
 
+// Create a new blog post (form submission)
+router.post('/new', bodyParser.urlencoded(), (req, res) => {
+	am.getUserFromSession(req.session).then(user => {
+		if(user) {
+			const { title, content, keywords } = req.body;
+			createPost(user, title, content, keywords).then(pid => {
+				res.redirect("/post/" + pid);
+			});
+		} else {
+			res.redirect("/");
+		}
+	});
 });
 
 router.get('/:postId/edit', (req, res) => {
