@@ -15,9 +15,12 @@ router.post('/', bodyParser.urlencoded(), (req, res) => {
 // GET route for displaying the search form
 router.get('/search', (req, res) => {
 	// Render the search form view (search.ejs)
-	res.render('search', {
-
-	});
+	const query = null;
+	const searchBy = null;
+	const keywords = null;
+	const sortBy = null;
+	const order = null;
+	res.render('search', { query, searchBy, keywords, sortBy, order });
 });
 
 // POST route for handling the search form submission
