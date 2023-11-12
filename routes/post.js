@@ -28,7 +28,7 @@ async function getComments(pid) {
 			post: pid
 		},
 		order: [
-			[ 'date': 'ASC' ]
+			[ 'date', 'ASC' ]
 		]
 	});
 }
