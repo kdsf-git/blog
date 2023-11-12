@@ -128,25 +128,6 @@ async function createPost(un, tit, cont, kw) {
 	});
 }
 
-// Display a specific blog post
-router.get('/:postId', (req, res) => {
-	getPostAndView(req.params.postId).then(post => {
-		if(post) {
-			getComments(req.params.postId).then(comments => {
-				am.getUserFromSession(req.session).then(user => {
-					getKudos(user, req.params.postId).then(kudos => {
-						getNKudos(req.params.postId).then(nKudos => {
-							res.render('single-post', { user, post, comments, kudos, nKudos });
-						});
-					});
-				});
-			});
-		} else {
-			res.status(404).send("Post not found");
-		}
-	});
-});
-
 router.get('/new', (req, res) => {
 	am.getUserFromSession(req.session).then(user => {
 		if(user) {
@@ -167,6 +148,25 @@ router.post('/new', bodyParser.urlencoded(), (req, res) => {
 			});
 		} else {
 			res.redirect("/");
+		}
+	});
+});
+
+// Display a specific blog post
+router.get('/:postId', (req, res) => {
+	getPostAndView(req.params.postId).then(post => {
+		if(post) {
+			getComments(req.params.postId).then(comments => {
+				am.getUserFromSession(req.session).then(user => {
+					getKudos(user, req.params.postId).then(kudos => {
+						getNKudos(req.params.postId).then(nKudos => {
+							res.render('single-post', { user, post, comments, kudos, nKudos });
+						});
+					});
+				});
+			});
+		} else {
+			res.status(404).send("Post not found");
 		}
 	});
 });
