@@ -9,11 +9,10 @@
     <% posts.forEach(post => { %>
         <div class="col-md-4 mb-4">
             <div class="card">
-                <img src="<%= post.featuredImage %>" class="card-img-top" alt="<%= post.title %>">
                 <div class="card-body">
                     <h5 class="card-title"><%= post.title %></h5>
                     <p class="card-text"><%= post.content.substring(0, 100) %>...</p>
-                    <a href="/post/<%= post._id %>" class="btn btn-primary">Read More</a>
+                    <a href="/post/<%= post.id %>" class="btn btn-primary">Read More</a>
                 </div>
             </div>
         </div>

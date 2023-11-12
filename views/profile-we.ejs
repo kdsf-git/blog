@@ -16,10 +16,6 @@
                 <label for="bio">Bio</label>
                 <textarea class="form-control" id="bio" name="bio" rows="4"><%= u.bio %></textarea>
             </div>
-            <div class="form-group">
-                <label for="profilePicture">Profile Picture URL</label>
-                <input type="text" class="form-control" id="profilePicture" name="profilePicture" value="<%= user.profilePicture %>">
-            </div>
             <h3>Change Password</h3>
             <div class="form-group">
                 <label for="newPassword">New Password</label>
@@ -27,6 +23,18 @@
             </div>
             <button type="submit" class="btn btn-primary">Save Changes</button>
         </form>
+        <% if(error) { %>
+            <p>Email already in use by another user</p>
+        <% } %>
+
+        <h2>Published Posts</h2>
+        <ul class="post-list">
+            <% posts.forEach(function(post) { %>
+                <li>
+                    <a href="/post/<%= post.id %>"><%= post.title %></a>
+                </li>
+            <% }); %>
+        </ul>
     </div>
 </div>
 

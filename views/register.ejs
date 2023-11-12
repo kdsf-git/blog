@@ -3,6 +3,9 @@
 <div class="row justify-content-center">
     <div class="col-md-6">
         <h2>Register</h2>
+        <% if(error) { %>
+            <p>Username or email already in use</p>
+        <% } %>
         <form action="/register" method="post">
             <div class="form-group">
                 <label for="username">Username</label>

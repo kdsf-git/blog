@@ -6,9 +6,11 @@
         <p>Email: <%= u.email %></p>
         <p>Bio: <%= u.bio %></p>
         <h3>Published Posts</h3>
-        <ul>
-            <% user.publishedPosts.forEach(post => { %>
-                <li><a href="/post/<%= post._id %>"><%= post.title %></a></li>
+        <ul  class="post-list">
+            <% posts.forEach(post => { %>
+                <li>
+                    <a href="/post/<%= post.id %>"><%= post.title %></a>
+                </li>
             <% }) %>
         </ul>
     </div>
