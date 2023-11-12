@@ -24,12 +24,9 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
 	am.getUserFromSession(req.session).then(user => {
 		const { query, searchBy, keywords, sortBy, order } = req.body;
-
-		// search using parameters
-		const results = await searchPosts(query, searchBy, keywords, sortBy, order);
-
-		// search results view with retrieved results
-		res.render('search', { results, query, searchBy, keywords, sortBy, order });
+		searchPosts(query, searchBy, keywords, sortBy, order).then(results => {
+			res.render('search', { results, query, searchBy, keywords, sortBy, order });
+		});
 	});
 });
 
