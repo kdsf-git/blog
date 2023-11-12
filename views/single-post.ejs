@@ -19,7 +19,7 @@
 		<% } %>
 		<% if(user) { %>
 			<form method="POST" action="/post/<%= post.id %>/kudos">
-				<button <% if(kudos) { %>style="background-color:dimgray;border-color:dimgray;color: lightslategray" <% } %>type="submit">Kudos</button>
+				<button <% if(kudos) { %>style="background-color:dimgray;border-color:dimgray;color: lightgray" <% } %>type="submit">Kudos</button>
 			</form>
 			<form method="POST" action="/post/<%= post.id %>/comment">
 				<label for="content">Comment: </label>
