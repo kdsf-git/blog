@@ -2,9 +2,9 @@
 
 <div class="row justify-content-center">
     <div class="col-md-6">
-        <h2>User Profile: <%= user.username %></h2>
+        <h2>User Profile: <%= u.username %></h2>
         <p>Email: <%= u.email %></p>
-        <p>Bio: <%= user.bio %></p>
+        <p>Bio: <%= u.bio %></p>
         <h3>Published Posts</h3>
         <ul>
             <% user.publishedPosts.forEach(post => { %>
