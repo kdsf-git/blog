@@ -1,14 +1,14 @@
 <%- include ('./layout.ejs') %>
 
 <div class="card">
-	<img src="<%= post.featuredImage %>" class="card-img-top" alt="<%= post.title %>">
 	<div class="card-body">
 		<h2 class="card-title"><%= post.title %></h2>
 		<p class="card-text"><%= post.content %></p>
-		<p>Keywords: <%= post.keywords %></p>
-		<p>Author: <a href="/user/<%= post.username %>"><%= post.username %></a></p>
-		<p>Views: <%= post.views %></p>
-		<p>Kudos: <%= nKudos %></p>
+		<p class="card-text">Keywords: <%= post.keywords %></p>
+		<p class="card-text">Author: <a href="/user/<%= post.username %>"><%= post.username %></a></p>
+		<p class="card-text"><small class="text-muted">Published on <%= post.date %></small></p>
+		<p class="card-text">Views: <%= post.views %></p>
+		<p class="card-text">Kudos: <%= nKudos %></p>
 		<% if(user == post.username) { %>
 			<form method="GET" action="/post/<%= post.id %>/edit">
 				<button type="submit">Edit</button>
@@ -35,7 +35,6 @@
 				</li>
 			<% }); %>
 		</ul>
-		<p class="card-text"><small class="text-muted">Published on <%= post.createdAt %></small></p>
 	</div>
 </div>
 
