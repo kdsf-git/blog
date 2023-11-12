@@ -23,7 +23,7 @@
 			</form>
 			<form method="POST" action="/post/<%= post.id %>/comment">
 				<label for="content">Comment: </label>
-				<input type="text" name="content" id="content">
+				<input type="text" name="content" id="content" required>
 				<button type="submit">Comment</button>
 			</form>
 		<% } %>
