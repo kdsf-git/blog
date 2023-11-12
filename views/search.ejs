@@ -38,15 +38,6 @@
                     </select>
                 </div>
             </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="order">Order</label>
-                    <select class="form-control" id="order" name="order">
-                        <option value="asc" <%= order === 'asc' ? 'selected' : '' %>>Ascending</option>
-                        <option value="desc" <%= order === 'desc' ? 'selected' : '' %>>Descending</option>
-                    </select>
-                </div>
-            </div>
         </form>
 	<% if(results) { %>
             <% if (results.length > 0) { %>

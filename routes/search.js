@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const router = express.Router();
 const am = require('../models/authManager.js');
 
-async function searchPosts(query, searchBy, kw, sortBy, order) {
+async function searchPosts(query, searchBy, kw, sortBy) {
 	
 }
 
@@ -15,17 +15,17 @@ router.get('/', (req, res) => {
 		const keywords = null;
 		const sortBy = null;
 		const order = null;
-		const results = [];
-		res.render('search', { user, query, searchBy, keywords, sortBy, order, results });
+		const results = null;
+		res.render('search', { user, query, searchBy, keywords, sortBy, results });
 	});
 });
 
 // POST route for handling the search form submission
 router.post('/', bodyParser.urlencoded(), (req, res) => {
 	am.getUserFromSession(req.session).then(user => {
-		const { query, searchBy, keywords, sortBy, order } = req.body;
-		searchPosts(query, searchBy, keywords, sortBy, order).then(results => {
-			res.render('search', { results, query, searchBy, keywords, sortBy, order });
+		const { query, searchBy, keywords, sortBy } = req.body;
+		searchPosts(query, searchBy, keywords, sortBy ).then(results => {
+			res.render('search', { user, results, query, searchBy, keywords, sortBy });
 		});
 	});
 });
