@@ -11,7 +11,7 @@
     <p>Views: <%= post.views %></p>
     <p>Kudos: <%= nKudos %></p>
     <% if(user == post.username) { %>
-        <form method="POST" action="/post/<%= post.id %>/edit">
+        <form method="GET" action="/post/<%= post.id %>/edit">
 	    <button type="submit">Edit</button>
         </form>
 	<form method="POST" action="/post/<%= post.id %>/delete">
