@@ -139,3 +139,10 @@ li {
     border-radius: 4px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
+textarea {
+    resize: none;
+    overflow: hidden;
+    min-height: 50px;
+    max-height: 100px;
+}
