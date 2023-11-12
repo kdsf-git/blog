@@ -3,30 +3,26 @@ const bodyParser = require('body-parser');
 const router = express.Router();
 const am = require('../models/authManager.js');
 
-router.get('/', (req, res) => {
-	am.getUserFromSession(req.session).then(user => {
-		res.render("search", { user });
-    });
-});
-
-router.post('/', bodyParser.urlencoded(), (req, res) => {
-});
+async function searchPosts(query, searchBy, kw, sortBy, order) {
+	
+}
 
 // GET route for displaying the search form
-router.get('/search', (req, res) => {
-	// Render the search form view (search.ejs)
-	const query = null;
-	const searchBy = null;
-	const keywords = null;
-	const sortBy = null;
-	const order = null;
-	const results = [];
-	res.render('search', { query, searchBy, keywords, sortBy, order, results });
+router.get('/', (req, res) => {
+	am.getUserFromSession(req.session).then(user => {
+		const query = null;
+		const searchBy = null;
+		const keywords = null;
+		const sortBy = null;
+		const order = null;
+		const results = [];
+		res.render('search', { user, query, searchBy, keywords, sortBy, order, results });
+	});
 });
 
 // POST route for handling the search form submission
-router.post('/search', async (req, res) => {
-	try {
+router.post('/', (req, res) => {
+	am.getUserFromSession(req.session).then(user => {
 		const { query, searchBy, keywords, sortBy, order } = req.body;
 
 		// search using parameters
@@ -34,11 +30,7 @@ router.post('/search', async (req, res) => {
 
 		// search results view with retrieved results
 		res.render('search', { results, query, searchBy, keywords, sortBy, order });
-	} catch (error) {
-		// Handle errors
-		console.error(error);
-		res.render('error', { error });
-	}
+	});
 });
 
 module.exports = router;

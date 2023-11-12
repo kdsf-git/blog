@@ -3,7 +3,7 @@
 <div class="row justify-content-center">
     <div class="col-md-8">
         <h2>Search Results</h2>
-        <form action="/search" method="get">
+        <form action="/search" method="POST">
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="searchText">Search</label>
@@ -48,22 +48,23 @@
                 </div>
             </div>
         </form>
-
-        <% if (results.length > 0) { %>
-            <h3>Found <%= results.length %> result(s)</h3>
-            <ul class="list-group">
-                <% results.forEach(post => { %>
-                    <li class="list-group-item">
-                        <h4><a href="/post/<%= post._id %>"><%= post.title %></a></h4>
-                        <p><%= post.content.substring(0, 100) %>...</p>
-                        <p>Author: <%= post.author %></p>
-                        <p>Date: <%= post.createdAt %></p>
-                        <p>Kudos: <%= post.kudos %></p>
-                    </li>
-                <% }) %>
-            </ul>
-        <% } else { %>
-            <p>Nothing exists here yet,... maybe you'll change that?</p>
+	<% if(results) { %>
+            <% if (results.length > 0) { %>
+                <h3>Found <%= results.length %> result(s)</h3>
+                <ul class="list-group">
+                    <% results.forEach(post => { %>
+                        <li class="list-group-item">
+                            <h4><a href="/post/<%= post._id %>"><%= post.title %></a></h4>
+                            <p><%= post.content.substring(0, 100) %>...</p>
+                            <p>Author: <%= post.author %></p>
+                            <p>Date: <%= post.createdAt %></p>
+                            <p>Kudos: <%= post.kudos %></p>
+                        </li>
+                    <% }) %>
+                </ul>
+            <% } else { %>
+                <p>Nothing exists here yet,... maybe you'll change that?</p>
+            <% } %>
         <% } %>
     </div>
 </div>
