@@ -25,7 +25,7 @@ router.get('/:username', (req, res) => {
 	am.getUserFromSession(req.session).then(user => {
 		getUser(req.params.username).then(u => {
 			if(u) {
-				const error = null;
+				const error = req.query.error;
 				getPostsByUser(u.username).then(posts => {
 					if(user == req.params.username) {
 						//editable version
@@ -39,6 +39,27 @@ router.get('/:username', (req, res) => {
 				res.status(404).send("User not found");
 			}
 		});
+	});
+});
+
+router.post("/:username", bodyParser.urlencoded(), (req, res) => {
+	am.getUserFromSession(req.session).then(user => {
+		if(user) {
+			if(user == req.params.username) {
+				const { un, em, b, pw } = req.body;
+				am.modify(un, em, b, pw).then(error => {
+					if(error) {
+						res.redirect("/user/" + req.params.username + "?error=1");
+					} else {
+						res.redirect("/user/" + req.params.username);
+					}
+				});
+			} else {
+				res.status(502).send("Forbidden");
+			}
+		} else {
+			res.redirect("/user/" + req.params.username + "?error=1");
+		}
 	});
 });
 
