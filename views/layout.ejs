@@ -23,8 +23,14 @@
             <li class="nav-item">
                 <a class="nav-link" href="/">Home</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/search">Search</a>
+            </li>
 
             <% if (typeof user == 'string' && user) { %>
+                <li class="nav-item">
+                    <a class="nav-link" href="/post/new">Create'a'Post</a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/user/<%= user %>">Profile</a>
                 </li>
