@@ -21,7 +21,7 @@ router.get('/', (req, res) => {
 });
 
 // POST route for handling the search form submission
-router.post('/', (req, res) => {
+router.post('/', bodyParser.urlencoded(), (req, res) => {
 	am.getUserFromSession(req.session).then(user => {
 		const { query, searchBy, keywords, sortBy, order } = req.body;
 		searchPosts(query, searchBy, keywords, sortBy, order).then(results => {
