@@ -23,13 +23,15 @@ async function searchPosts(query, searchBy, kw, sortBy) {
 		],
 		include: [
 			{
-				model: Kudos
+				model: Kudos,
+				attributes: []
 			},
 			{
-				model: Comment
+				model: Comment,
+				attributes: []
 			}
 		],
-		group: [ 'Post.id'],
+		group: [ 'Post.id' ],
 		raw: true
 	};
 
