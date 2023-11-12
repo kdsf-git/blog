@@ -17,6 +17,13 @@
 	    <button type="submit">Delete</button>
 	</form>
     <% } %>
+    <% if(user) { %>
+	<form method="POST" action="/post/<%= post.id %>/comment">
+	    <label for="content">Comment: </label>
+	    <input type="text" name="content" id="content">
+	    <button type="submit">Comment</button>
+	</form>
+    <% } %>
     <ul>
 	<% comments.forEach(function(comment) { %>
 	    <li>
