@@ -5,7 +5,6 @@ const sequelize = require('../models/dbConnector.js');
 const am = require('../models/authManager.js');
 const Post = require('../models/post.js');
 const Kudos = require('../models/kudos.js');
-const Comment = require('../models/comment.js');
 
 async function searchPosts(query, searchBy, kw, sortBy) {
 	
@@ -18,16 +17,11 @@ async function searchPosts(query, searchBy, kw, sortBy) {
 			'content',
 			'views',
 			'date',
-			[ sequelize.fn('COUNT', sequelize.col('Kudos.id')), 'nKudos' ],
-			//[ sequelize.fn('COUNT', sequelize.col('Comment.id')), 'nComment' ]
+			[ sequelize.fn('COUNT', sequelize.col('Kudos.id')), 'nKudos' ]
 		],
 		include: [
 			{
 				model: Kudos,
-				attributes: []
-			},
-			{
-				model: Comment,
 				attributes: []
 			}
 		],
