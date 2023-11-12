@@ -6,14 +6,14 @@
 <div class="container">
     <h1>User Profile</h1>
 
-    <form method="POST" action="/user">
+    <form method="POST" action="/user<%= user %>">
 	<h2>Username: <%= u.username %></h2>
 	<label for="email">Email:</label>
-	<input type="email" id="email" name="email" value="<%= u.email %>">
+	<input type="email" id="email" name="email" value="<%= u.email %>" required>
 	<label for="bio">Bio:</label>
 	<input type="text" id="bio" name="bio" value="<%= u.bio %>">
 	<label for="password">Password:</label>
-	<input type="password" id="password" name="password">
+	<input type="password" id="password" name="password" required>
 	<button type="submit">Save changes</button>
     </form>
     <% if(error) { %>
