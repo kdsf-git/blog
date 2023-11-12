@@ -7,14 +7,33 @@ body, h1, h2, h3, p, ul, li {
 /* Basic styles for the body */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
+    background-color: #333;
+    color: #fff;
 }
+
+.navbar {
+    background-color: #222 !important;
+}
+
+.navbar-dark .navbar-toggler-icon {
+    background-color: #fff;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: #fff;
+}
+
+.navbar-dark .navbar-toggler-icon {
+    background-color: #fff;
+}
+
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
+    background-color: #444;
     padding: 20px;
+    border-radius: 10px;
 }
 
 /* Header styles */

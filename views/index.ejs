@@ -1,21 +1,43 @@
-<%- include('./htmlTop.ejs') %>
-    <title>Blog Posts</title>
-    <!-- Add necessary CSS for styling -->
+<% include ./layout.ejs %>
 
-<%- include('./htmlMiddle.ejs') %>
-
-<div class="container">
-    <h1>Blog Posts</h1>
-
-    <ul class="post-list">
-        <% posts.forEach(function(post) { %>
-            <li>
-                <a href="/post/<%= post.id %>"><%= post.title %></a>
-            </li>
-        <% }); %>
-    </ul>
+<div class="jumbotron">
+    <h1 class="display-4">Welcome to Your Blog!</h1>
+    <p class="lead">Share your thoughts and engage with the community.</p>
 </div>
 
-<!-- Include additional styling or scripts as needed -->
+<div class="row">
+    <% posts.forEach(post => { %>
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="<%= post.featuredImage %>" class="card-img-top" alt="<%= post.title %>">
+                <div class="card-body">
+                    <h5 class="card-title"><%= post.title %></h5>
+                    <p class="card-text"><%= post.content.substring(0, 100) %>...</p>
+                    <a href="/post/<%= post._id %>" class="btn btn-primary">Read More</a>
+                </div>
+            </div>
+        </div>
+    <% }) %>
+</div>
 
-<%- include('./htmlBottom.ejs') %>
+<!--<%- include('./htmlTop.ejs') %>-->
+<!--    <title>Blog Posts</title>-->
+<!--    &lt;!&ndash; Add necessary CSS for styling &ndash;&gt;-->
+
+<!--&lt;!&ndash;<%- include('./htmlMiddle.ejs') %>&ndash;&gt;-->
+
+<!--&lt;!&ndash;<div class="container">&ndash;&gt;-->
+<!--&lt;!&ndash;    <h1>Blog Posts</h1>&ndash;&gt;-->
+
+<!--&lt;!&ndash;    <ul class="post-list">&ndash;&gt;-->
+<!--&lt;!&ndash;        <% posts.forEach(function(post) { %>&ndash;&gt;-->
+<!--&lt;!&ndash;            <li>&ndash;&gt;-->
+<!--&lt;!&ndash;                <a href="/post/<%= post.id %>"><%= post.title %></a>&ndash;&gt;-->
+<!--&lt;!&ndash;            </li>&ndash;&gt;-->
+<!--&lt;!&ndash;        <% }); %>&ndash;&gt;-->
+<!--&lt;!&ndash;    </ul>&ndash;&gt;-->
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+<!--&lt;!&ndash; Include additional styling or scripts as needed &ndash;&gt;-->
+
+<!--<%- include('./htmlBottom.ejs') %>-->
