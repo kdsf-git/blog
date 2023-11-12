@@ -32,11 +32,11 @@ router.get('/:username', (req, res) => {
 						//read-only version
 						res.render('profile-ro', { user, u, posts });
 					}
-				}
+				});
 			} else {
 				res.status(404).send("User not found");
 			}
-		}
+		});
 	});
 });
 
