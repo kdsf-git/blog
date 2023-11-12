@@ -143,8 +143,8 @@ router.post('/new', bodyParser.urlencoded(), (req, res) => {
 	am.getUserFromSession(req.session).then(user => {
 		if(user) {
 			const { title, content, keywords } = req.body;
-			createPost(user, title, content, keywords).then(pid => {
-				res.redirect("/post/" + pid);
+			createPost(user, title, content, keywords).then(post => {
+				res.redirect("/post/" + post.id);
 			});
 		} else {
 			res.redirect("/");
