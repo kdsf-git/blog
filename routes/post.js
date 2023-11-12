@@ -114,7 +114,7 @@ router.post('/:postId/kudos', (req, res) => {
 			getPost(req.params.postId).then(post => {
 				if(post) {
 					toggleKudos(user, req.params.postId).then(() => {
-						res.redirect("/" + req.params.postId);
+						res.redirect("/post/" + req.params.postId);
 					});
 				} else {
 					res.status(404).send("Post not found");
