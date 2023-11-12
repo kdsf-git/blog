@@ -24,7 +24,7 @@ router.post('/', (req, res) => {
 		} else {
 			res.redirect('/login?error=1');
 		}
-	}
+	});
 });
 
 module.exports = router;
