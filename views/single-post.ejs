@@ -3,7 +3,7 @@
 <div class="card">
 	<div class="card-body">
 		<h2 class="card-title"><%= post.title %></h2>
-		<textarea id="textarea" style="width: 100% readonly><%= post.content %></textarea>
+		<textarea id="textarea" style="width: 100%" readonly><%= post.content %></textarea>
 		<p class="card-text">Keywords: <%= post.keywords %></p>
 		<p class="card-text">Author: <a href="/user/<%= post.username %>"><%= post.username %></a></p>
 		<p class="card-text"><small class="text-muted">Published on <%= post.date %></small></p>
