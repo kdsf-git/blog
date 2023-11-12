@@ -33,6 +33,19 @@ async function getPost(pid) {
 	});
 }
 
+async function modifyPost(pid, tit, cont, kw) {
+	return await sequelize.transaction(async () => {
+		let post = await getPost(pid);
+		post.set({
+			title: tit,
+			content: cont,
+			keywords: kw
+		});
+		await post.save();
+		return post;
+	});
+}
+
 async function getComments(pid) {
 	return await Comment.findAll({
 		where: {
@@ -109,9 +122,48 @@ router.post('/create', (req, res) => {
 
 });
 
-// Update an existing blog post (form submission)
-router.post('/:postId/edit', (req, res) => {
+router.get('/:postId/edit', (req, res) => {
+	am.getUserFromSession(req.session).then(user => {
+		if(user) {
+			getPost(req.params.postId).then(post => {
+				if(post) {
+					if(user == post.username) {
+						res.render("edit-post", { user, post });
+					} else {
+						res.status(402).send("Forbidden");
+					}
+				} else {
+					res.status(404).send("Post not found");
+				}
+			});
+		} else {
+			res.redirect("/post/" + req.params.postId);
+		}
+	});
+});
 
+// Update an existing blog post (form submission)
+router.post('/:postId/edit', bodyParser.urlencoded(), (req, res) => {
+	am.getUserFromSession(req.session).then(user => {
+		if(user) {
+			getPost(req.params.postId).then(post => {
+				if(post) {
+					if(user == post.username) {
+						const { title, content, keywords } = req.body;
+						modifyPost(post.id, title, content, keywords).then(() => {
+							res.redirect("/post/" + req.params.postId);
+						});
+					} else {
+						res.status(402).send("Forbidden");
+					}
+				} else {
+					res.status(404).send("Post not found");
+				}
+			});
+		} else {
+			res.redirect("/post/" + req.params.postId);
+		}
+	});
 });
 
 // Delete a blog post
@@ -132,7 +184,7 @@ router.post('/:postId/kudos', (req, res) => {
 				}
 			});
 		} else {
-			res.redirect("/" + req.params.postId);
+			res.redirect("/post/" + req.params.postId);
 		}
 	});
 });

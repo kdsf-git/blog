@@ -56,7 +56,7 @@ router.post("/:username", bodyParser.urlencoded(), (req, res) => {
 					}
 				});
 			} else {
-				res.status(502).send("Forbidden");
+				res.status(402).send("Forbidden");
 			}
 		} else {
 			res.redirect("/user/" + req.params.username + "?error=1");
