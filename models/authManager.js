@@ -1,5 +1,6 @@
-const { sequelize, op } = require('sequelize');
+const { op } = require('sequelize');
 const moment = require('moment');
+const sequelize = require('./dbConnector.js');
 const User = require('./user.js');
 const Session = require('./session.js');
 
